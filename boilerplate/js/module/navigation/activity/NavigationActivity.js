@@ -18,8 +18,8 @@ define([
         start: function (region, place) {
             var view = new NavigationView();
             region.show(view);
-            this.bindTo(view, 'goto:profile', this.gotoProfile);
-            this.bindTo(view, 'goto:settings', this.gotoSettings);
+            this.listenTo(view, 'goto:profile', this.gotoProfile);
+            this.listenTo(view, 'goto:settings', this.gotoSettings);
 
             // Highlight current tab
             this.view = view;

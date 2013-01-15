@@ -67,7 +67,7 @@ Brix.CompositeManager.prototype = {
     start: function (placeChangeInitiator, region, place) {
         this.stop();
         this.region = region;
-        this.bindTo(placeChangeInitiator, PLACE_CHANGE_EVENT, _compositeManagerOnPlaceChange);
+        this.listenTo(placeChangeInitiator, PLACE_CHANGE_EVENT, _compositeManagerOnPlaceChange);
         if (place) {
             _compositeManagerOnPlaceChange.call(this, place);
         }
@@ -77,7 +77,8 @@ Brix.CompositeManager.prototype = {
      * Unsubscribes from place change events
      */
     stop: function () {
-        this.unbindAll();
+        //TODO
+        //this.unbindAll();
         if (this.currentManager) {
             this.currentManager.stop();
             delete this.currentManager;

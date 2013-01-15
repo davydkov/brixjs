@@ -26,6 +26,20 @@ TODO
 
 TODO
 
+To run example application locally:
+
+```sh
+npm run-script dev
+```
+
+or
+
+```sh
+node dev-boilerplate.js
+```
+
+and open http://localhost:3000/
+
 ## Copyright (MIT License)
 
 Copyright (c) 2013 Denis Davydkov

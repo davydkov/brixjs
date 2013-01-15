@@ -61,7 +61,7 @@ Brix.ActivityManager.prototype = {
     start: function (placeChangeInitiator, region, place) {
         this.stop();
         this.region = region;
-        this.bindTo(placeChangeInitiator, PLACE_CHANGE_EVENT, _activityManagerOnPlaceChange);
+        this.listenTo(placeChangeInitiator, PLACE_CHANGE_EVENT, _activityManagerOnPlaceChange);
         if (place) {
             _activityManagerOnPlaceChange.call(this, place);
         }
@@ -71,7 +71,8 @@ Brix.ActivityManager.prototype = {
      * Unsubscribes from place change events
      */
     stop: function () {
-        this.unbindAll();
+        //TODO
+        //this.unbindAll();
         if (this.currentActivity) {
             this.currentActivity.stop(null);
             delete this.currentActivity;
