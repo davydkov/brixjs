@@ -1,1 +1,2 @@
-var Brix = Backbone.Marionette.Brix = {};
+Underscore = _;
+Brix = Backbone.Marionette.Brix = {};
