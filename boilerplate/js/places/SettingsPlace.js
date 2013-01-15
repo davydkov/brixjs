@@ -1,4 +1,12 @@
-define(['brix'], function(Brix){
-    return Brix.Place.extend({
+define(['brix'], function (Brix) {
+    /**
+     * @constructor
+     * @class SettingsPlace
+     * @extends {Brix.Place}
+     */
+    var SettingsPlace = Brix.Place.extend({
+        name: 'settings' // Just for debugging
     });
+
+    return SettingsPlace;
 });

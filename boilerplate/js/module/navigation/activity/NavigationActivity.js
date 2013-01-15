@@ -1,7 +1,10 @@
 define([
     'brix',
-    'module/navigation/view/NavigationView'
-], function (Brix, NavigationView) {
+    'module/navigation/view/NavigationView',
+    'placeController',
+    'places/ProfilePlace',
+    'places/SettingsPlace'
+], function (Brix, NavigationView, placeController, ProfilePlace, SettingsPlace) {
     /**
      * @constructor
      * @class NavigationActivity
@@ -13,8 +16,14 @@ define([
          * @param {Brix.Place} place new place
          */
         start: function (region, place) {
-            this.view = new NavigationView();
-            region.show(this.view);
+            var view = new NavigationView();
+            region.show(view);
+            this.bindTo(view, 'goto:profile', this.gotoProfile);
+            this.bindTo(view, 'goto:settings', this.gotoSettings);
+
+            // Highlight current tab
+            this.view = view;
+            this.highlightActiveTab(place);
         },
 
         /**
@@ -23,8 +32,26 @@ define([
          * @return {boolean}
          */
         stop: function (newPlace) {
+            this.highlightActiveTab(newPlace);
             // this activity never stops
             return false;
+        },
+
+        gotoProfile: function () {
+            placeController.gotoPlace(new ProfilePlace());
+        },
+
+        gotoSettings: function () {
+            placeController.gotoPlace(new SettingsPlace());
+        },
+
+        highlightActiveTab: function (place) {
+            if (place instanceof ProfilePlace) {
+                this.view.highlightTab('profile')
+            }
+            if (place instanceof SettingsPlace) {
+                this.view.highlightTab('settings')
+            }
         }
 
     });

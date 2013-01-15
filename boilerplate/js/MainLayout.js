@@ -5,7 +5,7 @@ define(['marionette', 'hbs!template/MainLayout'], function (Marionette, template
      * @extends {Marionette.Layout}
      */
     var MainLayout = Marionette.Layout.extend({
-        className: 'main-layout',
+        className: 'container',
         template: template,
         regions: {
             "navigationRegion": "header",

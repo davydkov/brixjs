@@ -43,6 +43,7 @@
         "grunt": "~0.3.16",
         "grunt-jasmine-runner": "latest",
         "grunt-rigger": "*",
+        "grunt-contrib": "latest",
         "express": "3.0.4"
     }
 }

@@ -5,7 +5,16 @@ define(['marionette', 'hbs!template/navigation/NavigationView'], function (Mario
      * @extends {Marionette.Layout}
      */
     var NavigationView = Marionette.ItemView.extend({
-        template: template
+        className: 'navbar navbar-fixed-top',
+        template: template,
+        triggers: {
+            'click .profile': 'goto:profile',
+            'click .settings': 'goto:settings'
+        },
+        highlightTab: function (tabName) {
+            this.$(".nav li").removeClass('active');
+            this.$(".nav li." + tabName).addClass('active');
+        }
     });
 
     return NavigationView;

@@ -12,11 +12,10 @@ require.config({
     paths: {
         jquery: "../libs/jquery.min",
         underscore: "../libs/amdjs/underscore-1.4.3",
-        backbone: "../libs/amdjs/backbone-0.9.2",
+        backbone: "../libs/amdjs/backbone-0.9.9",
         'backbone.wreqr': "../libs/marionette/backbone.wreqr-0.1.0",
-        'backbone.eventbinder': "../libs/marionette/backbone.eventbinder-1.0.2",
         'backbone.babysitter': "../libs/marionette/backbone.babysitter-0.0.4",
-        marionette: "../libs/marionette/backbone.marionette-1.0.0-rc2",
+        marionette: "../libs/marionette/backbone.marionette-1.0.0-rc3",
         brix: "../libs/brix-0.0.1",
 
         // Handlerbars and Plugin
