@@ -1,0 +1,48 @@
+{
+    "name": "Backbone.Marionette.Brix",
+    "description": "Make your Marionette.js apps scale and evolve infinitely!",
+    "version": "0.0.1",
+    "homepage": "https://github.com/beenokle/brixjs",
+    "keywords": [
+        "backbone",
+        "plugin",
+        "marionette",
+        "client",
+        "browser"
+    ],
+
+    "licenses": [
+        {
+            "type": "MIT"
+        }
+    ],
+
+    "scripts": {
+        "dev": "node dev-boilerplate.js",
+        "test": "grunt jasmine",
+        "start": "grunt jasmine-server"
+    },
+
+    "author": {
+        "name": "Denis Davydkov",
+        "email": "denis@davydkov.com"
+    },
+
+    "bugs": {
+        "web": "https://github.com/beenokle/brixjs/issues"
+    },
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/beenokle/brixjs.git"
+    },
+
+    "github": "https://github.com/beenokle/brixjs",
+
+    "devDependencies": {
+        "grunt": "~0.3.16",
+        "grunt-jasmine-runner": "latest",
+        "grunt-rigger": "*",
+        "express": "3.0.4"
+    }
+}
