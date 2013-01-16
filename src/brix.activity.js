@@ -4,7 +4,7 @@
 /**
  * @constructor
  * @class {Brix.Activity}
- * @extends {Backbone.EventBinder}
+ * @extends {Backbone.Events}
  */
 Brix.Activity = function Activity() {
     Marionette.addEventBinder(this);

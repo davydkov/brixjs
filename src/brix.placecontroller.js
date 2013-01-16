@@ -89,12 +89,9 @@ Brix.PlaceController.prototype = {
      * @param {Place} newPlace
      */
     gotoPlace: function (newPlace) {
-        if (!(newPlace instanceof Brix.Place)) {
-            //nothing to do
-            return;
-        }
         var current = this.currentPlace;
-        if (current && (current === newPlace || current.equals(newPlace))) {
+        // Is newPlace the same?
+        if (current && (current === newPlace || (current.constructor === newPlace.constructor && current.equals(newPlace)))) {
             //do nothing - places are the same
             return;
         }
@@ -109,13 +106,14 @@ Brix.PlaceController.prototype = {
             }
         });
         // We found associated route
-        if (route) {
+        if (route !== null) {
             var params = newPlace.toString();
             if (params) {
                 route = route + PLACE_PATH_SEPARATOR + params;
             }
             this.currentPlace = newPlace;
             _sharedRouter.navigate(route, {trigger: false});
+            this.trigger(PLACE_CHANGE_EVENT, newPlace);
         }
     }
 };

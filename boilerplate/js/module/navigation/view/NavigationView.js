@@ -2,6 +2,7 @@ define(['marionette', 'hbs!template/navigation/NavigationView'], function (Mario
 
     /**
      * @constructor
+     * @class NavigationView
      * @extends {Marionette.Layout}
      */
     var NavigationView = Marionette.ItemView.extend({

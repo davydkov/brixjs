@@ -57,9 +57,6 @@ Brix.Place.prototype = {
      * @return {boolean}
      */
     equals: function (place) {
-        if (this.constructor !== place.constructor) {
-            return false;
-        }
         return Underscore.all(Underscore.keys(this.schema), function (k) {
             return this[k] === place[k];
         }, this);

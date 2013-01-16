@@ -9,7 +9,7 @@ define([
      * @constructor
      * @class NavigationActivity
      */
-    return Brix.Activity.extend({
+    var NavigationActivity = Brix.Activity.extend({
 
         /**
          * @param {Marionette.Region} region region to display something from this activity
@@ -55,4 +55,6 @@ define([
         }
 
     });
+
+    return NavigationActivity;
 });
