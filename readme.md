@@ -25,9 +25,18 @@ Boilerplate application is using:
 * [Handlebars](handlebarsjs.com) 1.0-rc1
 * [RequireJS-Handlebars plugin](https://github.com/SlexAxton/require-handlebars-plugin) 0.4.0
 
-## Architecture
+## Classes
 
-TODO
+Brix classes description
+* [***Place***](https://github.com/beenokle/brixjs/blob/master/docs/place.md): Represent bookmarkable state
+* [***PlaceController***](https://github.com/beenokle/brixjs/blob/master/docs/placecontroller.md): Responsible for navigation between places and keeps browser history in sync
+* [***Module***](https://github.com/beenokle/brixjs/blob/master/docs/module.md): Basic interface for Modules
+* [***Activity***](https://github.com/beenokle/brixjs/blob/master/docs/activity.md): Activity class
+* [***SimpleActivity***](https://github.com/beenokle/brixjs/blob/master/docs/simpleactivity.md): Helper activity class, that just renders some view
+* [***ActivityManager***](https://github.com/beenokle/brixjs/blob/master/docs/activitymanager.md): Starts/Stops activity in response to place change events
+* [***DelegateManager***](https://github.com/beenokle/brixjs/blob/master/docs/delegatemanager.md): Allows to switch between managers for single region
+* [***CompositeManager***](https://github.com/beenokle/brixjs/blob/master/docs/compositemanager.md): Creates Marionette.Layout and associate managers with regions
+
 
 ## Boilerplate application
 
