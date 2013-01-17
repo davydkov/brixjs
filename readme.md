@@ -4,7 +4,14 @@ Make your Marionette.js apps scale and evolve infinitely
 
 ## About
 
-TODO
+The idea is similar to that one implemented at Google Web Toolkit (GWT).
+[Read more about Places, Activities and ActivityManagers](https://developers.google.com/web-toolkit/doc/latest/DevGuideMvpActivitiesAndPlaces)
+
+Benefits from using such paradigm:
+* application could be divided to several absolutely independent modules, so their development could be easily paralled
+* view regions are updated independently - some could be re-rendered, some could stay untouched, that leads to better UI-performance
+* infinite hierarchy of view regions and their managers
+* TODO
 
 ## Requirements
 
