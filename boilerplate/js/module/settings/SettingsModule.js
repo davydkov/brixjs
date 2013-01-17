@@ -1,9 +1,13 @@
 define([
     'brix',
-    'module/settings/activity/SettingsActivity',
+    'module/settings/activity/SubSettingsActivity',
+    'module/settings/activity/LeftColumnActivity',
+    'module/settings/activity/RightColumnActivity',
     'places/SettingsPlace',
+    'places/SubSettingsPlace',
     'module/settings/SettingsModuleView'
-], function (Brix, SettingsActivity, SettingsPlace, SettingsModuleView) {
+], function (Brix, SubSettingsActivity, LeftColumnActivity, RightColumnActivity, SettingsPlace, SubSettingsPlace,
+    SettingsModuleView) {
 
     /**
      * @constructor
@@ -14,7 +18,7 @@ define([
          *
          */
         mapper: function (newPlace) {
-            return null;
+            return new LeftColumnActivity();
         }
     });
 
@@ -27,8 +31,12 @@ define([
          *
          */
         mapper: function (newPlace) {
+            // Should be before SettingsPlace because inherited from it
+            if (newPlace instanceof SubSettingsPlace) {
+                return new SubSettingsActivity();
+            }
             if (newPlace instanceof SettingsPlace) {
-                return new SettingsActivity();
+                return new RightColumnActivity();
             }
             return null;
         }
@@ -39,40 +47,13 @@ define([
      * @class SettingsModule
      * @extends {Brix.Module}
      */
-    var SettingsModule = Brix.Module.extend(
-        /**
-         * @lends {SettingsModule.prototype}
-         */
-        {
-            /**
-             * Starts module
-             * @param {Backbone.Events} placeChangeInitiator Observable object, that fires "place:change" events
-             * @param {Marionette.Region} region
-             * @param {?Brix.Place} place Place to initialize immediately
-             */
-            start: function (placeChangeInitiator, region, place) {
-                this.view = new SettingsModuleView();
-                region.show(this.view);
-
-                // Start manager for left column
-                this.leftColumnManager = new SettingsLeftColumnActivityManager();
-                this.leftColumnManager.start(placeChangeInitiator, this.view.leftColumn, place);
-
-                // Start manager for right column
-                this.rightColumnManager = new SettingsRightColumnActivityManager();
-                this.rightColumnManager.start(placeChangeInitiator, this.view.rightColumn, place);
-            },
-
-            /**
-             * Stops module
-             */
-            stop: function () {
-                this.leftColumnManager.stop();
-                this.rightColumnManager.stop();
-                this.view.close();
-            }
+    var SettingsModule = Brix.CompositeManager.extend({
+        layoutView: SettingsModuleView,
+        regions: {
+            'leftColumn': SettingsLeftColumnActivityManager,
+            'rightColumn': SettingsRightColumnActivityManager
         }
-    );
+    });
 
     return SettingsModule;
 });

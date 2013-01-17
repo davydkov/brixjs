@@ -1,11 +1,13 @@
 define([
     'places/ProfilePlace',
-    'places/SettingsPlace'
-], function (ProfilePlace, SettingsPlace) {
+    'places/SettingsPlace',
+    'places/SubSettingsPlace'
+], function (ProfilePlace, SettingsPlace, SubSettingsPlace) {
     // This module just returns mapping of places to its string tokens
     return {
         '': ProfilePlace, // Default Place
         'profile': ProfilePlace,
-        'settings': SettingsPlace
+        'settings': SettingsPlace,
+        'sub-settings': SubSettingsPlace
     };
 });

@@ -2,92 +2,73 @@
 // -------
 
 /**
- * @private
- * @param {Brix.Place} newPlace
- * @this {Brix.CompositeManager}
- */
-var _compositeManagerOnPlaceChange = function (newPlace) {
-    if (!newPlace && this.currentManager) {
-        // just stop current manager
-        this.currentManager.stop();
-        delete this.currentManager;
-        return;
-    }
-    // Create new manager
-    var manager = this.mapper(newPlace);
-    if (!manager) {
-        // manager mapper returned null, so nothing to do
-        return;
-    }
-    if (this.currentManager && manager.constructor === this.currentManager.constructor) {
-        // we already have this manager started, just propagate place change event
-        this.trigger(PLACE_CHANGE_EVENT, newPlace);
-    } else {
-        // stop current manager
-        if (this.currentManager) {
-            this.currentManager.stop();
-        }
-        this.currentManager = manager;
-        manager.start(this, this.region, newPlace);
-    }
-};
-
-/**
- * Something like ActivityManager, but for managers. Could be used to define logical groups of activities
- *
- * @constructor
  * @class {Brix.CompositeManager}
- * @extends {Backbone.EventBinder}
  * @extends {Backbone.Events}
- * @implements {Brix.Module}
- * @param {?function(Brix.Place):Brix.ActivityManager} managerMapper
+ * @extends {Brix.Module}
  */
-Brix.CompositeManager = function CompositeManager(managerMapper) {
-    Marionette.addEventBinder(this);
-    if (Underscore.isFunction(managerMapper)) {
-        this.mapper = managerMapper;
-    }
-};
-Brix.CompositeManager.prototype = {
-    constructor: Brix.CompositeManager,
+Brix.CompositeManager = Brix.Module.extend(
     /**
-     * Empty function by default, could be rewritten
-     * @param {Brix.Place} newPlace
-     * @return {?Brix.ActivityManager}
+     * @lends {Brix.CompositeManager.prototype}
      */
-    mapper: function (newPlace) {
-        return null;
-    },
-    /**
-     * Subscribes for place change events
-     * @param {Backbone.Events} placeChangeInitiator Observable object, that fires "place:change" events
-     * @param {Marionette.Region} region
-     * @param {?Brix.Place} place Place to initialize immediately
-     */
-    start: function (placeChangeInitiator, region, place) {
-        this.stop();
-        this.region = region;
-        this.listenTo(placeChangeInitiator, PLACE_CHANGE_EVENT, _compositeManagerOnPlaceChange);
-        if (place) {
-            _compositeManagerOnPlaceChange.call(this, place);
-        }
-    },
+    {
+        /**
+         * @constructs
+         * @param {?Object} options Configuration object, that could override layoutView and regions mapping
+         */
+        constructor: function CompositeManager(options) {
+            if (options) {
+                this.layoutView = options.layoutView || this.layoutView;
+                this.regions = options.regions || this.regions;
+            }
+            if (!this.layoutView || !this.regions) {
+                throw new Error("Wrong initialization of CompositeManager");
+            }
+        },
 
-    /**
-     * Unsubscribes from place change events
-     */
-    stop: function () {
-        //TODO
-        //this.unbindAll();
-        if (this.currentManager) {
-            this.currentManager.stop();
-            delete this.currentManager;
-        }
-        if (this.region) {
-            this.region.close();
-            delete this.region;
+        layoutView: null,
+
+        regions: null,
+
+        /**
+         * @param {Backbone.Events} placeChangeInitiator Observable object, that fires "place:change" events
+         * @param {Marionette.Region} region
+         * @param {?Brix.Place} place Place to initialize immediately
+         */
+        start: function (placeChangeInitiator, region, place) {
+            this.stop();
+
+            // Just to remove annoying intention from WebStorm
+            var LayoutClass = this.layoutView;
+
+            // create layout
+            var layout = new LayoutClass();
+            region.show(layout);
+            this.layout = layout;
+
+            // create managers
+            var managers = [];
+            Underscore.each(this.regions, function (ManagerClass, regionKey) {
+                var manager = new ManagerClass();
+                if (!(manager instanceof Brix.Module)) {
+                    throw new Error("Class should extend from Brix.Module");
+                }
+                manager.start(placeChangeInitiator, layout[regionKey], place);
+                managers.push(manager);
+            });
+            this.managers = managers;
+        },
+
+        stop: function () {
+            if (this.managers) {
+                Underscore.each(this.managers, function (manager) {
+                    manager.stop();
+                });
+                delete this.managers;
+            }
+            if (this.layout) {
+                this.layout.close();
+                delete this.layout;
+            }
         }
     }
-};
-Underscore.extend(Brix.CompositeManager.prototype, Backbone.Events);
-Brix.CompositeManager.extend = extend;
+);

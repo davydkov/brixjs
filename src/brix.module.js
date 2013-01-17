@@ -1,7 +1,8 @@
 // Brix.Module
 // -------
 /**
- * @interface
+ * @constructor
+ * @class {Brix.Module}
  */
 Brix.Module = function Module() {
 };

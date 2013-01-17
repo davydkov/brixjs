@@ -7,11 +7,11 @@ define([
 ], function (Brix, ProfilePlace, ProfileModule, SettingsPlace, SettingsModule) {
 
     /**
-     * This is composite manager.
+     * This is delegate manager.
      * Is starts specific manager for new place.
      * In other words, different activity managers could be started inside one region.
      */
-    return Brix.CompositeManager.extend({
+    return Brix.DelegateManager.extend({
         mapper: function (newPlace) {
             if (newPlace instanceof ProfilePlace) {
                 return new ProfileModule()

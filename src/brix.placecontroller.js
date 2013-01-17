@@ -19,6 +19,7 @@ var _brixPlaceControllerInstance = null;
  * @constructor
  * @class {Brix.PlaceController}
  * @param {Object} places Object with places mappings
+ * @extends {Backbone.Events}
  */
 Brix.PlaceController = function PlaceController(places) {
     // place controller should be singleton

@@ -1,4 +1,4 @@
-define(['marionette', 'hbs!template/settings/LeftColumnView'], function (Marionette, template) {
+define(['marionette', 'hbs!template/settings/RightColumnView'], function (Marionette, template) {
 
     /**
      * @constructor

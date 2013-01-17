@@ -9,7 +9,9 @@ var Brix = (function (Underscore, Backbone, Marionette) {
 //= ../brix.placecontroller.js
 //= ../brix.module.js
 //= ../brix.activity.js
+//= ../brix.simpleactivity.js
 //= ../brix.activitymanager.js
+//= ../brix.delegatemanager.js
 //= ../brix.compositemanager.js
 
     return Brix;
