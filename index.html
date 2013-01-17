@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Brixjs by beenokle</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/beenokle/brixjs">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/beenokle/brixjs/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/beenokle/brixjs/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Brixjs</h1>
+          <p>BrixJS Framework</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/beenokle">beenokle</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>BrixJS</h1>
+
+<p>Make your Marionette.js apps scale and evolve infinitely</p>
+
+<h2>About</h2>
+
+<p>The idea is similar to that one implemented at Google Web Toolkit (GWT).
+<a href="https://developers.google.com/web-toolkit/doc/latest/DevGuideMvpActivitiesAndPlaces">Read more about Places, Activities and ActivityManagers</a></p>
+
+<p>Benefits from using such paradigm:</p>
+
+<ul>
+<li>application could be divided to several absolutely independent modules, so their development could be easily paralled</li>
+<li>view regions are updated independently - some could be re-rendered, some could stay untouched, that leads to better UI-performance</li>
+<li>infinite hierarchy of view regions and their managers</li>
+<li>TODO</li>
+</ul><h2>Requirements</h2>
+
+<p>This framework extends and is based on</p>
+
+<ul>
+<li>
+<a href="http://marionettejs.com/">Marionette</a> 1.0.0-rc3</li>
+</ul><p>Boilerplate application is using:</p>
+
+<ul>
+<li>
+<a href="https://github.com/amdjs/underscore">Underscore</a> 1.4.3 (AMD-version)</li>
+<li>
+<a href="https://github.com/amdjs/backbone">Backbone</a> 0.9.9 (AMD-version)</li>
+<li>
+<a href="https://github.com/jrburke/requirejs">RequireJS</a> 2.1.2 (could be easily removed)</li>
+<li>
+<a href="handlebarsjs.com">Handlebars</a> 1.0-rc1</li>
+<li>
+<a href="https://github.com/SlexAxton/require-handlebars-plugin">RequireJS-Handlebars plugin</a> 0.4.0</li>
+</ul><h2>Classes</h2>
+
+<p>Brix classes description</p>
+
+<ul>
+<li>
+<a href="https://github.com/beenokle/brixjs/blob/master/docs/place.md"><strong><em>Place</em></strong></a>: Represent bookmarkable state</li>
+<li>
+<a href="https://github.com/beenokle/brixjs/blob/master/docs/placecontroller.md"><strong><em>PlaceController</em></strong></a>: Responsible for navigation between places and keeps browser history in sync</li>
+<li>
+<a href="https://github.com/beenokle/brixjs/blob/master/docs/module.md"><strong><em>Module</em></strong></a>: Basic interface for Modules</li>
+<li>
+<a href="https://github.com/beenokle/brixjs/blob/master/docs/activity.md"><strong><em>Activity</em></strong></a>: Activity class</li>
+<li>
+<a href="https://github.com/beenokle/brixjs/blob/master/docs/simpleactivity.md"><strong><em>SimpleActivity</em></strong></a>: Helper activity class, that just renders some view</li>
+<li>
+<a href="https://github.com/beenokle/brixjs/blob/master/docs/activitymanager.md"><strong><em>ActivityManager</em></strong></a>: Starts/Stops activity in response to place change events</li>
+<li>
+<a href="https://github.com/beenokle/brixjs/blob/master/docs/delegatemanager.md"><strong><em>DelegateManager</em></strong></a>: Allows to switch between managers for single region</li>
+<li>
+<a href="https://github.com/beenokle/brixjs/blob/master/docs/compositemanager.md"><strong><em>CompositeManager</em></strong></a>: Creates Marionette.Layout and associate managers with regions</li>
+</ul><h2>Boilerplate application</h2>
+
+<p>TODO</p>
+
+<p>To run example application locally:</p>
+
+<div class="highlight"><pre>npm run-script dev
+</pre></div>
+
+<p>or</p>
+
+<div class="highlight"><pre>node dev-boilerplate.js
+</pre></div>
+
+<p>and open http://localhost:3000/</p>
+
+<h2>Copyright (MIT License)</h2>
+
+<p>Copyright (c) 2013 Denis Davydkov</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
