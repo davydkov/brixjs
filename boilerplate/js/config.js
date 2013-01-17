@@ -35,7 +35,8 @@ require.config({
         templateExtension: "hbs",
         disableI18n: false,
         disableHelpers: false,
-        i18nDirectory: "i18n/"
+        i18nDirectory: "i18n/",
+        helperDirectory: "template/helpers/"
     },
 
     shim: {

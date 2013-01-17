@@ -1,1 +1,49 @@
-My Profile
+<h1>Welcome</h1>
+<p>What was happened when you opened this page:</p>
+<ol>
+    <li>Loaded and started {{githubUrl "application.js"}}</li>
+    <li>Via RequireJS it gets all the dependencies, one is instance of Brix.PlaceController
+        - {{githubUrl "placeController.js"}}</li>
+    <li>It creates instance of {{githubUrl "MainLayout.js"}} and renders right into html body</li>
+    <li>MainLayout defines two regions - top header and main region</li>
+    <li>Then application.js starts two Modules (ActivityManagers)
+        <ul>
+            <li>{{githubUrl "module/navigation/NavigationModule.js" "NavigationModule.js"}} will be responsible for
+                header region
+            </li>
+            <li>{{githubUrl "module/MainModule.js" "MainModule.js"}} will be responsible for main content region</li>
+        </ul>
+        Both modules listen to "place:change" event from placeController
+    </li>
+    <li>Then placeController is started</li>
+    <li>Because of {{githubUrl "places/mapping.js" "mapping.js"}} placeController creates instance
+        of {{githubUrl "places/MyProfilePlace.js" "MyProfilePlace.js"}} and fires place change event.<br/>
+        Now both modules receive this event and do futher logic<br/>
+        <b>NavigationModule:</b><br/>
+        <ol>
+            <li>For every place this module has single mapping that creates instance
+                of {{githubUrl "module/navigation/activity/NavigationActivity.js" "NavigationActivity.js"}}</li>
+            <li>This instance is started and is given with region (top header)</li>
+            <li>Activity creates instance
+                of {{githubUrl "module/navigation/view/NavigationView.js" "NavigationView.js"}} and asks region to show
+                this view
+            </li>
+            <li>After it activity subscribes to events from view (menu clicks) and asks view to highlight current menu
+            </li>
+        </ol>
+        <b>MainModule:</b><br/>
+        <ol>
+            <li>Main module is CompositeManager and just delegates region controlling to some particular module
+                depending of current place
+            </li>
+            <li>Because current place is MyProfilePlace it creates instance
+                of {{githubUrl "module/profile/ProfileModule.js" "ProfileModule.js"}} and starts it
+            </li>
+            <li>ProfileModule starts {{githubUrl "module/profile/activity/ProfileActivity.js" "ProfileActivity.js"}}
+                that renders {{githubUrl "module/profile/view/ProfileView.js" "ProfileView.js"}} into main region
+            </li>
+            <li>So you see this text!</li>
+        </ol>
+    </li>
+</ol>
+<p>Now lets see what will happen when you click on "Settings" menu</p>

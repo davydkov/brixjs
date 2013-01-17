@@ -1,5 +1,5 @@
 define([
-    '../libs/brix-0.0.1.js',
+    'brix',
     'places/mapping'
 ], function (Brix, placeMappings) {
     // Create instance of PlaceController (singleton)

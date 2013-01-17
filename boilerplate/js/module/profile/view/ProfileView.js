@@ -2,7 +2,8 @@ define(['marionette', 'hbs!template/profile/ProfileView'], function (Marionette,
 
     /**
      * @constructor
-     * @extends {Marionette.Layout}
+     * @class ProfileView
+     * @extends {Marionette.ItemView}
      */
     var ProfileView = Marionette.ItemView.extend({
         template: template

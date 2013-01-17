@@ -5,9 +5,6 @@ define([
 ], function (Brix, ProfileActivity, ProfilePlace) {
 
     return Brix.ActivityManager.extend({
-        /**
-         *
-         */
         mapper: function (newPlace) {
             if (newPlace instanceof ProfilePlace) {
                 return new ProfileActivity();

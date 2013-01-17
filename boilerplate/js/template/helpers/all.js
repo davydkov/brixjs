@@ -11,7 +11,9 @@
  Sucks. I know.
  */
 
-define([], function () {
+define([
+    'template/helpers/githubUrl'
+], function () {
     return {};
 });
 //>>excludeEnd('excludeAfterBuild')

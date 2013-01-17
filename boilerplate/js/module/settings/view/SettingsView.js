@@ -2,7 +2,8 @@ define(['marionette', 'hbs!template/settings/SettingsView'], function (Marionett
 
     /**
      * @constructor
-     * @extends {Marionette.Layout}
+     * @class SettingsView
+     * @extends {Marionette.ItemView}
      */
     var SettingsView = Marionette.ItemView.extend({
         template: template
