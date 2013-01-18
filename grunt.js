@@ -81,10 +81,43 @@ module.exports = function (grunt) {
             }
         },
 
+        // Require JS Optimizer
+        requirejs: {
+            boilerplate: {
+                options: {
+                    baseUrl: "boilerplate/js",
+                    mainConfigFile: "boilerplate/js/config.js",
+                    out: "boilerplate/compiled-application.js",
+                    optimize: "uglify2",
+                    name: "almond",
+                    include: ["application"],
+                    excludeShallow: ["text", "json", "jquery"],
+                    pragmasOnSave: {
+                        //removes Handlebars.Parser code (used to compile template strings) set
+                        //it to `false` if you need to parse template strings even after build
+                        excludeHbsParser: true,
+                        // kills the entire plugin set once it's built.
+                        excludeHbs: true,
+                        // removes i18n precompiler, handlebars and json2
+                        excludeAfterBuild: true,
+                        // Exclude debug information
+                        excludeDebug: true
+                    },
+                    enforceDefine: true,
+                    inlineText: true,
+                    wrap: false,
+                    useStrict: true,
+                    preserveLicenseComments: false,
+                    skipModuleInsertion: false,
+                    cjsTranslate: true
+                }
+            }
+        },
+
         uglify: {}
     });
 
     // Default task.
-    grunt.registerTask('default', 'lint rig copy');
+    grunt.registerTask('default', 'lint rig copy requirejs');
 
 };
