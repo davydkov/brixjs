@@ -1,0 +1,12 @@
+<h4>Right Column Region</h4>
+<p>Wow! Here is another trick!</p>
+<p>{{githubUrl "places/SubSettingsPlace.js" "SubSettingsPlace"}} extends
+    from {{githubUrl "places/SettingsPlace.js" "SettingsPlace"}} (sub-place), so:</p>
+<ul>
+    <li>{{githubUrl "module/navigation/activity/NavigationActivity.js" "NavigationActivity"}} highlights "right" menu
+    </li>
+    <li>MainModule still delegates place change events to SettingsModule</li>
+    <li>{{githubUrl "module/settings/activity/LeftColumnActivity.js" "LeftColumnActivity"}} decides not to stop, so the
+        only region re-rendered is this Right Column region. Profit!
+    </li>
+</ul>

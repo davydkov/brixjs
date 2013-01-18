@@ -1,0 +1,34 @@
+<h1>Settings Module</h1>
+<p>You see this page because current place is SettingPlace - take a look at address bar.</p>
+<p>{{githubUrl "module/settings/SettingsModule.js" "SettingsModule"}} is a CompositeManager associated
+    with {{githubUrl "module/settings/SettingsModuleView.js" "SettingsModuleView"}} - that defines two column-regions
+    and has this text</p>
+<p>When you clicked on "Settings" menu link the following was happened:</p>
+<ol>
+    <li>{{githubUrl "module/navigation/view/NavigationView.js" "NavigationView"}} fired event that custom user action
+        occured via Marionette triggers (thanks <a href="http://lostechies.com/derickbailey/">Derick</a> for that!)
+    </li>
+    <li>{{githubUrl "module/navigation/activity/NavigationActivity.js" "NavigationActivity"}} received event from view,
+        created instance of place and asked {{githubUrl "placeController.js" "placeController"}} to change current place<br/>
+        <span class="label">Hint</span> I recommend you to create places via some builders (to save parameters and page
+        state).
+    </li>
+    <li>Current place is changed and the magic begins</li>
+    <li>{{githubUrl "module/navigation/NavigationModule.js" "NavigationModule"}} asked current instance
+        of {{githubUrl "module/navigation/activity/NavigationActivity.js" "NavigationActivity"}} to stop. But its too
+        smart - highlights active menu and always says "false" as a result of stop method - thus activity manager
+        wont start new activity and navigation view wont be rerendered. Quite useful trick.
+    </li>
+    <li>{{githubUrl "module/MainModule.js" "MainModule"}} received place change event too, stopped previous manager
+        (that stopped its activity too) and started a new one
+        - {{githubUrl "module/settings/SettingsModule.js" "SettingsModule"}}
+    </li>
+    <li>{{githubUrl "module/settings/SettingsModule.js" "SettingsModule"}} created and started managers for regions
+        below
+    </li>
+</ol>
+<br/>
+<div class="row-fluid">
+    <div class="span4 left-column"></div>
+    <div class="span8 right-column"></div>
+</div>
