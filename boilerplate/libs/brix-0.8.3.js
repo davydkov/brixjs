@@ -396,7 +396,6 @@
           // Some developers could forgot to stopListening
           this.currentActivity.stopListening();
       }
-      this.currentPlace = newPlace;
       this.currentActivity = activity;
       activity.start(this.region, newPlace);
   };
@@ -408,7 +407,6 @@
    * @class {Brix.ActivityManager}
    * @extends {Backbone.Events}
    * @extends {Brix.Module}
-   * @implements {Brix.Module}
    */
   Brix.ActivityManager = Brix.Module.extend(
       /**
