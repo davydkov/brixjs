@@ -1,3 +1,6 @@
+#header nav li.fork {
+    margin-right: 5px;
+}
 section #title h1, section #title p {
     text-align: left;
 }

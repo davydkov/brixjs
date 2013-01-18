@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -20,7 +20,8 @@
 <body>
 <div id="header">
     <nav>
-        <li class="fork"><a href="https://github.com/beenokle/brixjs">View On GitHub</a></li>
+        <li class="fork"><a href="/boilerplate/">View DEMO</a></li>
+        <li class="fork"><a href="https://github.com/beenokle/brixjs">GitHub</a></li>
         <li class="downloads"><a href="https://github.com/beenokle/brixjs/zipball/master">ZIP</a></li>
         <li class="downloads"><a href="https://github.com/beenokle/brixjs/tarball/master">TAR</a></li>
         <li class="title">DOWNLOADS</li>
@@ -31,11 +32,14 @@
 
     <section>
         <div id="title">
-            <h1>BrixJS <small>aka "bricks"</small></h1>
+            <h1>BrixJS
+                <small>aka "bricks"</small>
+            </h1>
             <p>Lightweight, simple, but pretty powerful addition to <a href="http://marionettejs.com/">Marionette.js</a>
                 framework</p>
             <hr>
-            <span class="credits left">Project maintained by <a href="https://github.com/beenokle">Denis Davydkov</a></span>
+            <span class="credits left">Project maintained by <a href="https://github.com/beenokle">Denis
+                Davydkov</a></span>
             <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a
                     href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
         </div>
@@ -43,24 +47,22 @@
         <h1>Why?</h1>
 
         <p>No doubts that with <a href="http://marionettejs.com/">Marionette.js</a> you can build great large-scale
-            frontend applications.<br/>But when you are a large team, you have to implement a lot of screens and your application navigation changes frequently
+            frontend applications.<br/>But when you are a large team, you have to implement a lot of screens and your
+            application navigation changes frequently
             while you want keep everything bookmarkable - that routers and controllers are not so helpful.</p>
 
         <p>BrixJS (like "bricks") gives you a great opportunity to build your Backbone/Marionette application, but
-           using another vision of navigation and core architecture.</p>
+            using another vision of navigation and core architecture.</p>
 
         <h2>Idea</h2>
 
         <p>The idea of BrixJS is similar to that one implemented at Google Web Toolkit (GWT).<br/>
-         You define "places" (like bookmarkable states) and activities, that should run when user comes to some place.</p>
+            You define "places" (like bookmarkable states) and activities, that should run when user comes to some
+            place.</p>
+
         <p>That's it!</p>
 
-        <h2>How it works?</h2>
-        <p>GWT documentation contains examples (in Java) and gives accurate description<br/>
-            <a href="https://developers.google.com/web-toolkit/doc/latest/DevGuideMvpActivitiesAndPlaces">Read more
-                about Places, Activities and ActivityManagers</a></p>
-
-        <p>Benefits from using such paradigm:</p>
+        <p>Benefits from using BrixJS:</p>
 
         <ul>
             <li>application could be divided to several absolutely independent modules, so their development could be
@@ -70,17 +72,30 @@
                 leads to better UI-performance
             </li>
             <li>infinite hierarchy of view regions and their managers</li>
-            <li>TODO</li>
         </ul>
+
+        <h2>How it works?</h2>
+
+        <p>The better way to understand how it works - <a href="/boilerplate/">view demo</a></p>
+
+        <p>Documentaion is available at github page - <a href="https://github.com/beenokle/brixjs">view documentation</a></p>
+
+        <p>GWT documentation contains examples (in Java) and gives detailed description<br/>
+            <a href="https://developers.google.com/web-toolkit/doc/latest/DevGuideMvpActivitiesAndPlaces">Read more
+                about Places, Activities and ActivityManagers</a></p>
+
         <h2>Requirements</h2>
 
-        <p>This framework extends and is based on</p>
+        <p>This framework is based on</p>
 
         <ul>
             <li>
                 <a href="http://marionettejs.com/">Marionette</a> 1.0.0-rc3
             </li>
         </ul>
+
+        <h2>Boilerplate application</h2>
+
         <p>Boilerplate application is using:</p>
 
         <ul>
@@ -100,65 +115,22 @@
                 <a href="https://github.com/SlexAxton/require-handlebars-plugin">RequireJS-Handlebars plugin</a> 0.4.0
             </li>
         </ul>
-        <h2>Classes</h2>
 
-        <p>Brix classes description</p>
-
-        <ul>
-            <li>
-                <a href="https://github.com/beenokle/brixjs/blob/master/docs/place.md"><strong><em>Place</em></strong></a>:
-                Represent bookmarkable state
-            </li>
-            <li>
-                <a href="https://github.com/beenokle/brixjs/blob/master/docs/placecontroller.md"><strong><em>PlaceController</em></strong></a>:
-                Responsible for navigation between places and keeps browser history in sync
-            </li>
-            <li>
-                <a href="https://github.com/beenokle/brixjs/blob/master/docs/module.md"><strong><em>Module</em></strong></a>:
-                Basic interface for Modules
-            </li>
-            <li>
-                <a href="https://github.com/beenokle/brixjs/blob/master/docs/activity.md"><strong><em>Activity</em></strong></a>:
-                Activity class
-            </li>
-            <li>
-                <a href="https://github.com/beenokle/brixjs/blob/master/docs/simpleactivity.md"><strong><em>SimpleActivity</em></strong></a>:
-                Helper activity class, that just renders some view
-            </li>
-            <li>
-                <a href="https://github.com/beenokle/brixjs/blob/master/docs/activitymanager.md"><strong><em>ActivityManager</em></strong></a>:
-                Starts/Stops activity in response to place change events
-            </li>
-            <li>
-                <a href="https://github.com/beenokle/brixjs/blob/master/docs/delegatemanager.md"><strong><em>DelegateManager</em></strong></a>:
-                Allows to switch between managers for single region
-            </li>
-            <li>
-                <a href="https://github.com/beenokle/brixjs/blob/master/docs/compositemanager.md"><strong><em>CompositeManager</em></strong></a>:
-                Creates Marionette.Layout and associate managers with regions
-            </li>
-        </ul>
-        <h2>Boilerplate application</h2>
-
-        <p>TODO</p>
+        <p>Online and compiled version is available <a href="/boilerplate/">here</a></p>
 
         <p>To run example application locally:</p>
 
-        <div class="highlight"><pre>npm run-script dev
-</pre>
+        <div class="highlight"><pre>npm run-script dev</pre>
         </div>
 
         <p>or</p>
 
-        <div class="highlight"><pre>node dev-boilerplate.js
-</pre>
+        <div class="highlight"><pre>node dev-boilerplate.js</pre>
         </div>
 
         <p>and open http://localhost:3000/</p>
 
-        <h4>Copyright (MIT License)</h4>
-
-        <p>Copyright (c) 2013 Denis Davydkov</p>
+        <p>Copyright (c) 2013 Denis Davydkov (MIT License)</p>
     </section>
 
 </div>
