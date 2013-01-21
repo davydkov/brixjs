@@ -22,4 +22,4 @@ var myLayoutModule = new MyLayoutModule();
 myLayoutModule.start(placeController, mainContentRegion);
 ```
 
-CompositeManager will create instance of MyLayout, render to mainContentRegion, and starts given Module within specified regions.
+CompositeManager will create instance of MyLayout, render to mainContentRegion, and starts given modules within specified regions.
