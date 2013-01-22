@@ -36,6 +36,7 @@ Now place is changed again:
 
 *   Using "mapper" function ActivityManager gets instance of activity to run
     -   If "mapper" function returns null, nothing is happened
+    -   If "mapper" function returns true, than just stops current activity
 *   Calls method "stop" of current activity and gives it new place
     -   If "stop" returns false, process is stopped, in other words current activity does not want to stop and take control of new place
 *   Calls method "start" of new activity and gives associated region and place
