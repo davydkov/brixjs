@@ -30,8 +30,13 @@ var _activityManagerOnPlaceChange = function (newPlace) {
         // activity mapper returned null, so nothing to do
         return;
     }
+<<<<<<< HEAD
     if (Underscore.isBoolean(activity)) {
         _activityManagerStopCurrentActivity.call(this);
+=======
+    if (this.currentActivity && this.currentActivity.stop(newPlace) === false) {
+        // current activity does not want stop, let's keep it
+>>>>>>> edit documentation language
         return;
     }
     if (this.currentActivity) {
