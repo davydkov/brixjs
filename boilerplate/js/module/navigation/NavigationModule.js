@@ -5,7 +5,7 @@ define([
 
     return Brix.ActivityManager.extend({
         /**
-         * We want have top navigation always displayed, that why for every place we run NavigationActivity.
+         * We want to have the top navigation always displayed, so for every place we run NavigationActivity.
          * @return {NavigationActivity}
          */
         mapper: function () {
