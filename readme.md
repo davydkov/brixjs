@@ -48,7 +48,7 @@ Brix classes description
 
 ## Boilerplate application
 
-BrixJS Boileterplate application is available here - [BrixJS Demo](http://brixjs.com/boilerplate/)
+BrixJS Boilerplate application is available here - [BrixJS Demo](http://brixjs.com/boilerplate/)
 Online version is built with RequireJS optimizer.
 
 To run and debug non-built application locally (it uses NodeJS):
