@@ -18,7 +18,7 @@ require.config({
         marionette: "../libs/marionette/backbone.marionette-1.0.0-rc3",
         brix: "../libs/brix-0.8.3",
 
-        // Handlerbars and Plugin
+        // Handlebars and Plugin
         hbs: "../libs/require/plugins/hbs/hbs-0.4.0",
         i18nprecompile: "../libs/require/plugins/hbs/i18nprecompile",
         json2: "../libs/require/plugins/hbs/json2",

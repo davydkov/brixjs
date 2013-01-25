@@ -49,11 +49,11 @@
       params = params || {};
       Underscore.each(this.schema, function (defaultValue, key) {
           var value = params[key];
-          // Default value is number, value is supposed to be a number
+          // Default value is a number, so value should be a number
           if (Underscore.isNumber(defaultValue)) {
               this[key] = !Underscore.isUndefined(value) ? Number(value) : defaultValue;
           } else
-          // Default value is boolean, value is supposed to be a boolean
+          // Default value is a boolean, so value should be a boolean
           if (Underscore.isBoolean(defaultValue)) {
               if (Underscore.isString(value)) {
                   switch (value.toLowerCase()) {
@@ -196,19 +196,35 @@
               }
               // Build place instance
               var place = new PlaceClass(params);
+              if (!this._shouldSwitchPlace(place)) {
+                  return;
+              }
               this.currentPlace = place;
               this.trigger(PLACE_CHANGE_EVENT, place);
           }, this));
+      },
+      /**
+       * Check if place controller should switch place or not
+       *
+       * @private
+       * @param {Place} newPlace
+       * @return {boolean}
+       */
+      _shouldSwitchPlace: function (newPlace) {
+          var current = this.currentPlace;
+          // Is newPlace the same?
+          if (current && (current === newPlace || (current.constructor === newPlace.constructor && current.equals(newPlace)))) {
+              //do nothing - places are the same
+              return false;
+          }
+          return true;
       },
       /**
        * Navigates to new place
        * @param {Place} newPlace
        */
       gotoPlace: function (newPlace) {
-          var current = this.currentPlace;
-          // Is newPlace the same?
-          if (current && (current === newPlace || (current.constructor === newPlace.constructor && current.equals(newPlace)))) {
-              //do nothing - places are the same
+          if (!this._shouldSwitchPlace(newPlace)) {
               return;
           }
           // find associated route with given place
@@ -230,6 +246,8 @@
               this.currentPlace = newPlace;
               _sharedRouter.navigate(route, {trigger: false});
               this.trigger(PLACE_CHANGE_EVENT, newPlace);
+          } else {
+              throw new Error("No mappings defined for place");
           }
       }
   };
@@ -292,7 +310,7 @@
   
       /**
        * Before starting another activity, router will call this method.
-       * Useful for unbinding handlers from views, close dialogs or ask user to finalize some process before
+       * Useful for unbinding handlers from views, closing dialogs or asking user to finalize some process beforehand
        * (for app if view contains unsaved values).
        *
        * If returns false - starting new activity will be cancelled.
@@ -388,9 +406,14 @@
           // activity mapper returned null, so nothing to do
           return;
       }
+      if (Underscore.isBoolean(activity)) {
+          // Mapper returned true - so we have to stop current activity
+          _activityManagerStopCurrentActivity.call(this);
+          return;
+      }
       if (this.currentActivity) {
           if (this.currentActivity.stop(newPlace) === false) {
-              // current activity does not want stop, lets keep it
+              // current activity does not want stop, let's keep it
               return;
           }
           // Some developers could forgot to stopListening
@@ -459,6 +482,7 @@
           }
       }
   );
+  
   // Brix.DelegateManager
   // -------
   

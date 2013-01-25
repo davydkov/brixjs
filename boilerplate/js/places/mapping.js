@@ -3,7 +3,7 @@ define([
     'places/SettingsPlace',
     'places/SubSettingsPlace'
 ], function (ProfilePlace, SettingsPlace, SubSettingsPlace) {
-    // This module just returns mapping of places to its string tokens
+    // This module just returns mapping of places to string tokens
     return {
         '': ProfilePlace, // Default Place
         'profile': ProfilePlace,
