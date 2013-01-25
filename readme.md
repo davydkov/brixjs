@@ -4,9 +4,10 @@ Make your Marionette.js apps scale and evolve infinitely
 
 ## About
 
-The idea of BrixJS is similar to that one implemented at Google Web Toolkit (GWT).
-You define "places" (like bookmarkable states) and activities, that should run when user comes to some place.
-With Marionette layouts and views you define different regions with BrixJs you manage these regions.
+The idea of BrixJS is similar to the one implemented at Google Web Toolkit (GWT).
+"Places" are defined as bookmarkable states, and when a user comes to some place the corresponding "activity" is run.
+With Marionette layouts and views you define different regions.
+With BrixJs you manage these regions.
 
 That's it!
 

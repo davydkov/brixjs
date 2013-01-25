@@ -29,7 +29,7 @@ Brix.Activity.prototype = {
 
     /**
      * Before starting another activity, router will call this method.
-     * Useful for unbinding handlers from views, close dialogs or ask user to finalize some process before
+     * Useful for unbinding handlers from views, closing dialogs or asking user to finalize some process beforehand
      * (for app if view contains unsaved values).
      *
      * If returns false - starting new activity will be cancelled.
