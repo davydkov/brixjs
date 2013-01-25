@@ -12,11 +12,11 @@ Brix.Place = function Place(params) {
     params = params || {};
     Underscore.each(this.schema, function (defaultValue, key) {
         var value = params[key];
-        // Default value is number, value is supposed to be a number
+        // Default value is a number, so value should be a number
         if (Underscore.isNumber(defaultValue)) {
             this[key] = !Underscore.isUndefined(value) ? Number(value) : defaultValue;
         } else
-        // Default value is boolean, value is supposed to be a boolean
+        // Default value is a boolean, so value should be a boolean
         if (Underscore.isBoolean(defaultValue)) {
             if (Underscore.isString(value)) {
                 switch (value.toLowerCase()) {
