@@ -9,25 +9,32 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: '<json:package.json>',
 
+        meta: {
+            version: '<%= pkg.version %>',
+            banner: '// BrixJS, v<%= meta.version %>\n' +
+                '// Copyright (c) <%= grunt.template.today("yyyy") %> Denis Davydkov.\n' +
+                '// Distributed under MIT license'
+        },
+
         lint: {
             files: ['src/brix.*.js']
         },
 
         rig: {
             core_build: {
-                src: ['src/build/brix.core.js'],
-                dest: 'lib/brix.core-<%= pkg.version %>.js'
+                src: ['<banner:meta.banner>', 'src/build/brix.core.js'],
+                dest: 'lib/brix.core.js'
             },
             amd_build: {
-                src: ['src/build/brix.amd.js'],
-                dest: 'lib/brix.amd-<%= pkg.version %>.js'
+                src: ['<banner:meta.banner>', 'src/build/brix.amd.js'],
+                dest: 'lib/brix.amd.js'
             }
         },
 
         copy: {
             target: {
                 files: {
-                    'boilerplate/libs/brix-<%= pkg.version %>.js': ['lib/brix.amd-<%= pkg.version %>.js']
+                    'boilerplate/libs/brix.js': ['lib/brix.amd.js']
                 }
             }
         },
