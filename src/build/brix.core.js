@@ -6,6 +6,7 @@ var Brix = (function (Underscore, Backbone, Marionette) {
 
 //= ../brix.helpers.js
 //= ../brix.place.js
+//= ../brix.placetokenizer.js
 //= ../brix.placecontroller.js
 //= ../brix.module.js
 //= ../brix.activity.js

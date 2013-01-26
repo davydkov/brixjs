@@ -46,48 +46,51 @@
    * @param {Object} params Place attributes
    */
   Brix.Place = function Place(params) {
-      params = params || {};
-      Underscore.each(this.schema, function (defaultValue, key) {
-          var value = params[key];
-          // Default value is a number, so value should be a number
-          if (Underscore.isNumber(defaultValue)) {
-              this[key] = !Underscore.isUndefined(value) ? Number(value) : defaultValue;
-          } else
-          // Default value is a boolean, so value should be a boolean
-          if (Underscore.isBoolean(defaultValue)) {
-              if (Underscore.isString(value)) {
-                  switch (value.toLowerCase()) {
-                  case "true":
-                  case "yes":
-                  case "1":
-                      value = true;
-                      break;
-                  case "false":
-                  case "no":
-                  case "0":
-                      value = false;
-                      break;
-                  default:
-                      value = Boolean(value);
-                      break;
-                  }
-              }
-              this[key] = !Underscore.isUndefined(value) ? Boolean(value) : defaultValue;
-          } else
-          // Default value is string
-          if (Underscore.isString(defaultValue)) {
-              this[key] = !Underscore.isUndefined(value) ? String(value) : defaultValue;
-          } else {
-              // Default value is null
-              if (!Underscore.isUndefined(value)) {
-                  this[key] = value;
-              }
-          }
-      }, this);
+      this.setParams(params);
   };
   Brix.Place.prototype = {
       constructor: Brix.Place,
       schema: {},
+      setParams: function (params) {
+          params = params || {};
+          Underscore.each(this.schema, function (defaultValue, key) {
+              var value = params[key];
+              // Default value is a number, so value should be a number
+              if (Underscore.isNumber(defaultValue)) {
+                  this[key] = !Underscore.isUndefined(value) ? Number(value) : defaultValue;
+              } else
+              // Default value is a boolean, so value should be a boolean
+              if (Underscore.isBoolean(defaultValue)) {
+                  if (Underscore.isString(value)) {
+                      switch (value.toLowerCase()) {
+                      case "true":
+                      case "yes":
+                      case "1":
+                          value = true;
+                          break;
+                      case "false":
+                      case "no":
+                      case "0":
+                          value = false;
+                          break;
+                      default:
+                          value = Boolean(value);
+                          break;
+                      }
+                  }
+                  this[key] = !Underscore.isUndefined(value) ? Boolean(value) : defaultValue;
+              } else
+              // Default value is string
+              if (Underscore.isString(defaultValue)) {
+                  this[key] = !Underscore.isUndefined(value) ? String(value) : defaultValue;
+              } else {
+                  // Default value is null
+                  if (!Underscore.isUndefined(value)) {
+                      this[key] = value;
+                  }
+              }
+          }, this);
+      },
       /**
        * Checks equality to another place
        * @param place
@@ -97,22 +100,62 @@
           return Underscore.all(Underscore.keys(this.schema), function (k) {
               return this[k] === place[k];
           }, this);
-      },
+      }
+  };
+  Brix.Place.extend = extend;
+  // Brix.PlaceTokenizer
+  // -------
+  
+  /**
+   * Generates and parses history token for places.
+   *
+   * @constructor
+   * @class {Brix.PlaceTokenizer}
+   */
+  Brix.PlaceTokenizer = function PlaceTokenizer() {
+  };
+  Brix.PlaceTokenizer.prototype = {
+      constructor: Brix.PlaceTokenizer,
       /**
-       * @return {string} string representation of place
+       * Generates history token
+       * @param {String} prefix
+       * @param {Brix.Place} place
+       * @return {String}
        */
-      toString: function () {
-          var token = [];
-          Underscore.each(this.schema, function (defaultValue, key) {
+      generateToken: function (prefix, place) {
+          var token = [prefix];
+          Underscore.each(place.schema, function (defaultValue, key) {
               var value = this[key];
               if (!Underscore.isUndefined(value) && value !== defaultValue) {
                   token.push(key + "=" + encodeURIComponent(value));
               }
-          }, this);
+          }, place);
           return token.join(PLACE_PATH_SEPARATOR);
+      },
+      /**
+       * Reads and parse additional parameters from history token
+       *
+       * @param {Brix.Place} place Instance of place to populate with parameters
+       * @param {String} paramsString Part of history token
+       * @return {Brix.Place} instance of place with populated parameters
+       */
+      parseToken: function (place, paramsString) {
+          // extract params from string
+          if (paramsString && Underscore.isString(paramsString)) {
+              var params = {};
+              var parts = paramsString.split("/");
+              Underscore.each(parts, function (p) {
+                  var parts = p.split("=");
+                  if (parts.length === 2) {
+                      params[parts[0]] = decodeURIComponent(parts[1]);
+                  }
+              });
+              place.setParams(params);
+          }
+          return place;
       }
   };
-  Brix.Place.extend = extend;
+  Brix.PlaceTokenizer.extend = extend;
   // Brix.PlaceController
   // -------
   
@@ -127,6 +170,8 @@
    * @type {Brix.PlaceController}
    */
   var _brixPlaceControllerInstance = null;
+  
+  var _started = false;
   
   /**
    * Manages history changes
@@ -146,14 +191,28 @@
           _sharedRouter = new Backbone.Router();
       }
       _brixPlaceControllerInstance = this;
+      // Initiate PlaceTokenizer
+      if (Underscore.isFunction(this.tokenizer)) {
+          this._placeTokenizer = new this.tokenizer();
+      } else {
+          this._placeTokenizer = this.tokenizer;
+      }
       return this;
   };
   Brix.PlaceController.prototype = {
       constructor: Brix.PlaceController,
       /**
+       * Default tokenizer;
+       */
+      tokenizer: Brix.PlaceTokenizer,
+      /**
        * Starts history handling
        */
       start: function () {
+          if (_started) {
+              // Place controller is already started
+              return;
+          }
           // Bind places
           if (!Underscore.isObject(this.places) || Underscore.isEmpty(this.places)) {
               throw new Error("Brix.PlaceController should be initiated with place mappings");
@@ -162,8 +221,9 @@
               this._bindPlace(route, Class);
           }, this));
   
+          _started = true;
           // Start history handling
-          if (!Backbone.history.started) {
+          if (!Backbone.History.started) {
               Backbone.history.start();
           }
       },
@@ -183,19 +243,10 @@
           }
           // Create route handler
           _sharedRouter.route(route, routeName, Underscore.bind(function (paramsString) {
-              // extract params from string
-              var params = {};
-              if (paramsString && Underscore.isString(paramsString)) {
-                  var parts = paramsString.split("/");
-                  Underscore.each(parts, function (p) {
-                      var parts = p.split("=");
-                      if (parts.length === 2) {
-                          params[parts[0]] = decodeURIComponent(parts[1]);
-                      }
-                  });
-              }
               // Build place instance
-              var place = new PlaceClass(params);
+              var place = new PlaceClass();
+              // Extract params
+              place = this._placeTokenizer.parseToken(place, paramsString);
               if (!this._shouldSwitchPlace(place)) {
                   return;
               }
@@ -224,6 +275,9 @@
        * @param {Place} newPlace
        */
       gotoPlace: function (newPlace) {
+          if (!_started) {
+              throw new Error("PlaceController is not started");
+          }
           if (!this._shouldSwitchPlace(newPlace)) {
               return;
           }
@@ -239,12 +293,9 @@
           });
           // We found associated route
           if (route !== null) {
-              var params = newPlace.toString();
-              if (params) {
-                  route = route + PLACE_PATH_SEPARATOR + params;
-              }
+              var token = this._placeTokenizer.generateToken(route, newPlace);
               this.currentPlace = newPlace;
-              _sharedRouter.navigate(route, {trigger: false});
+              _sharedRouter.navigate(token, {trigger: false});
               this.trigger(PLACE_CHANGE_EVENT, newPlace);
           } else {
               throw new Error("No mappings defined for place");

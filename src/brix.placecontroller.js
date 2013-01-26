@@ -13,6 +13,8 @@ var _sharedRouter = null;
  */
 var _brixPlaceControllerInstance = null;
 
+var _started = false;
+
 /**
  * Manages history changes
  *
@@ -31,14 +33,28 @@ Brix.PlaceController = function PlaceController(places) {
         _sharedRouter = new Backbone.Router();
     }
     _brixPlaceControllerInstance = this;
+    // Initiate PlaceTokenizer
+    if (Underscore.isFunction(this.tokenizer)) {
+        this._placeTokenizer = new this.tokenizer();
+    } else {
+        this._placeTokenizer = this.tokenizer;
+    }
     return this;
 };
 Brix.PlaceController.prototype = {
     constructor: Brix.PlaceController,
     /**
+     * Default tokenizer;
+     */
+    tokenizer: Brix.PlaceTokenizer,
+    /**
      * Starts history handling
      */
     start: function () {
+        if (_started) {
+            // Place controller is already started
+            return;
+        }
         // Bind places
         if (!Underscore.isObject(this.places) || Underscore.isEmpty(this.places)) {
             throw new Error("Brix.PlaceController should be initiated with place mappings");
@@ -47,8 +63,9 @@ Brix.PlaceController.prototype = {
             this._bindPlace(route, Class);
         }, this));
 
+        _started = true;
         // Start history handling
-        if (!Backbone.history.started) {
+        if (!Backbone.History.started) {
             Backbone.history.start();
         }
     },
@@ -68,19 +85,10 @@ Brix.PlaceController.prototype = {
         }
         // Create route handler
         _sharedRouter.route(route, routeName, Underscore.bind(function (paramsString) {
-            // extract params from string
-            var params = {};
-            if (paramsString && Underscore.isString(paramsString)) {
-                var parts = paramsString.split("/");
-                Underscore.each(parts, function (p) {
-                    var parts = p.split("=");
-                    if (parts.length === 2) {
-                        params[parts[0]] = decodeURIComponent(parts[1]);
-                    }
-                });
-            }
             // Build place instance
-            var place = new PlaceClass(params);
+            var place = new PlaceClass();
+            // Extract params
+            place = this._placeTokenizer.parseToken(place, paramsString);
             if (!this._shouldSwitchPlace(place)) {
                 return;
             }
@@ -109,6 +117,9 @@ Brix.PlaceController.prototype = {
      * @param {Place} newPlace
      */
     gotoPlace: function (newPlace) {
+        if (!_started) {
+            throw new Error("PlaceController is not started");
+        }
         if (!this._shouldSwitchPlace(newPlace)) {
             return;
         }
@@ -124,12 +135,9 @@ Brix.PlaceController.prototype = {
         });
         // We found associated route
         if (route !== null) {
-            var params = newPlace.toString();
-            if (params) {
-                route = route + PLACE_PATH_SEPARATOR + params;
-            }
+            var token = this._placeTokenizer.generateToken(route, newPlace);
             this.currentPlace = newPlace;
-            _sharedRouter.navigate(route, {trigger: false});
+            _sharedRouter.navigate(token, {trigger: false});
             this.trigger(PLACE_CHANGE_EVENT, newPlace);
         } else {
             throw new Error("No mappings defined for place");

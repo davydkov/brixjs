@@ -4,7 +4,7 @@ Make your Marionette.js apps scale and evolve infinitely
 
 ## About
 
-BrixJS - Framework based on top of [Marionette](http://marionettejs.com/) that helps you to build multi-page JS Apps.
+BrixJS - Lightweight, simple, but pretty powerful addition to [Marionette.js](http://marionettejs.com/) framework, that helps you to build multi-page JS Apps.
 
 The idea of BrixJS is similar to the one implemented at Google Web Toolkit (GWT).
 "Places" are defined as bookmarkable states, and when a user comes to some place the corresponding "activity" is run.

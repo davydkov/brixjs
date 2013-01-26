@@ -42,6 +42,7 @@ module.exports = function (grunt) {
                 'spec/javascripts/support/brix.support.js',
                 'src/brix.helpers.js',
                 'src/brix.place.js',
+                'src/brix.placetokenizer.js',
                 'src/brix.placecontroller.js',
                 'src/brix.module.js',
                 'src/brix.activity.js',
