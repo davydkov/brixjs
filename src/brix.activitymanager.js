@@ -9,6 +9,7 @@ var _activityManagerStopCurrentActivity = function () {
     if (this.currentActivity) {
         // stop current activity
         this.currentActivity.stop(null);
+        // Some developers could forgot to stopListening
         this.currentActivity.stopListening();
         delete this.currentActivity;
     }
