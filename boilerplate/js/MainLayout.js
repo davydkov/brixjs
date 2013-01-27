@@ -8,6 +8,7 @@ define(['marionette', 'hbs!template/MainLayout'], function (Marionette, template
         className: 'container',
         template: template,
         regions: {
+            "modalRegion": ".modal-placeholders",
             "navigationRegion": "header",
             "mainRegion": ".main-content"
         }

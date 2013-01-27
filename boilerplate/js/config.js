@@ -16,7 +16,7 @@ require.config({
         'backbone.wreqr': "../libs/marionette/backbone.wreqr-0.1.0",
         'backbone.babysitter': "../libs/marionette/backbone.babysitter-0.0.4",
         marionette: "../libs/marionette/backbone.marionette-1.0.0-rc3",
-        brix: "../libs/brix-0.8.3",
+        brix: "../libs/brix",
 
         // Handlebars and Plugin
         hbs: "../libs/require/plugins/hbs/hbs-0.4.0",

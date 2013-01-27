@@ -1,0 +1,22 @@
+<div class="modal-header" xmlns="http://www.w3.org/1999/html">
+    <h4>Modal Header</h4>
+</div>
+<div class="modal-body">
+    <p>When place was changed to {{githubUrl "places/ModalWindowPlace.js" "ModalWindowPlace"}}, activity mapper
+        of {{githubUrl "module/ModalWindowsModule.js" "ModalWindowsModule"}} returned instance
+        of {{githubUrl "module/settings/activity/ModalWindowActivity.js" "ModalWindowActivity"}}, that displayed this
+        modal window.</p>
+
+    <p>Now if you press "Refresh" - you will get the same screen with modal window, in other words application is still
+        bookmarkable.</p>
+
+    <p>Because {{githubUrl "places/ModalWindowPlace.js" "ModalWindowPlace"}} extends
+        from {{githubUrl "places/SubSettingsPlace.js" "SubSettingsPlace"}} - underlying layout is not rerendered.</p>
+
+    <p>And when you press "Refresh" all mappers of activity managers return appropriate Activities.</p>
+
+    <p>Places inheritance helps a lot in such situations and perfect reflects "logical" structure of a navigation.</p>
+</div>
+<div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+</div>
