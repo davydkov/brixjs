@@ -6,14 +6,15 @@
         - {{githubUrl "placeController.js"}}</li>
     <li>It creates instance of {{githubUrl "MainLayout.js"}} and renders right into html body</li>
     <li>MainLayout defines two regions - top header and main region</li>
-    <li>Then application.js starts two Modules (ActivityManagers)
+    <li>Then application.js starts three Modules (ActivityManagers)
         <ul>
             <li>{{githubUrl "module/navigation/NavigationModule.js" "NavigationModule.js"}} will be responsible for
                 header region
             </li>
             <li>{{githubUrl "module/MainModule.js" "MainModule.js"}} will be responsible for main content region</li>
+            <li>{{githubUrl "module/ModalWindowsModule.js" "ModalWindowsModule.js"}} will be responsible for modal windows region - we will review it later</li>
         </ul>
-        Both modules listen to "place:change" event from placeController
+        All the modules listen to "place:change" event from placeController
     </li>
     <li>Then placeController is started</li>
     <li>Because of {{githubUrl "places/mapping.js" "mapping.js"}} placeController creates instance

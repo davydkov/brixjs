@@ -9,6 +9,8 @@ var _delegateManagerStopCurrentManager = function () {
     if (this.currentManager) {
         // stop current manager
         this.currentManager.stop();
+        // Some developers could forgot to stopListening
+        this.currentManager.stopListening();
         delete this.currentManager;
     }
 };
@@ -28,6 +30,9 @@ var _delegateManagerOnPlaceChange = function (newPlace) {
     if (!manager) {
         // manager mapper returned null, so nothing to do
         return;
+    }
+    if (!(manager instanceof Brix.Module)) {
+        throw new Error("Class should extend from Brix.Module");
     }
     if (this.currentManager && manager.constructor === this.currentManager.constructor) {
         // we already have this manager started, just propagate place change event

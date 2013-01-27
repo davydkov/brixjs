@@ -2,3 +2,11 @@
 header {
     height: 50px;
 }
+
+.modal-placeholders {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: auto;
+}
