@@ -2,6 +2,8 @@
 
 Make your Marionette.js apps scale and evolve infinitely
 
+[![Build Status](https://travis-ci.org/beenokle/brixjs.png?branch=master)](https://travis-ci.org/beenokle/brixjs)
+
 ## About
 
 BrixJS - Lightweight, simple, but pretty powerful addition to [Marionette.js](http://marionettejs.com/) framework, that helps you to build multi-page JS Apps.
