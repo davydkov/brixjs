@@ -19,7 +19,7 @@
 
     "scripts": {
         "dev": "node dev-boilerplate.js",
-        "test": "grunt jasmine",
+        "test": "grunt lint rig copy requirejs jasmine",
         "start": "grunt jasmine-server"
     },
 
