@@ -13,9 +13,9 @@ require.config({
         jquery: "../libs/jquery-1.9.0.min",
         underscore: "../libs/amdjs/underscore-1.4.3",
         backbone: "../libs/amdjs/backbone-0.9.10",
-        'backbone.wreqr': "../libs/marionette/backbone.wreqr-0.1.0",
+        'backbone.wreqr': "../libs/marionette/backbone.wreqr-0.1.1",
         'backbone.babysitter': "../libs/marionette/backbone.babysitter-0.0.4",
-        marionette: "../libs/marionette/backbone.marionette-1.0.0-rc3",
+        marionette: "../libs/marionette/backbone.marionette-1.0.0-rc4",
         brix: "../libs/brix",
 
         // Handlebars and Plugin

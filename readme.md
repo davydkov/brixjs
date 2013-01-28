@@ -28,7 +28,7 @@ Just checkout this demo to get better understanding how it works - [BrixJS Demo]
 
 This framework extends and is based on
 
-* [Marionette](http://marionettejs.com/) 1.0.0-rc3
+* [Marionette](http://marionettejs.com/) 1.0.0-rc4
 
 Boilerplate application is using:
 

@@ -16,7 +16,6 @@ Brix.CompositeManager = Brix.Module.extend(
          * @param {?Object} options Configuration object, that could override layoutView and regions mapping
          */
         constructor: function CompositeManager(options) {
-            Marionette.addEventBinder(this);
             if (options) {
                 this.layoutView = options.layoutView || this.layoutView;
                 this.regions = options.regions || this.regions;

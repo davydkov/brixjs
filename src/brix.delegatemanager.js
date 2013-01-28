@@ -62,7 +62,6 @@ Brix.DelegateManager = Brix.Module.extend(
          * @constructs
          */
         constructor: function DelegateManager(managerMapper) {
-            Marionette.addEventBinder(this);
             if (Underscore.isFunction(managerMapper)) {
                 this.mapper = managerMapper;
             }

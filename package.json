@@ -1,7 +1,7 @@
 {
     "name": "Backbone.Marionette.Brix",
     "description": "Make your Marionette.js apps scale and evolve infinitely!",
-    "version": "0.8.4",
+    "version": "0.8.5",
     "homepage": "https://github.com/beenokle/brixjs",
     "keywords": [
         "backbone",

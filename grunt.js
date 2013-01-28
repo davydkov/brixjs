@@ -45,7 +45,7 @@ module.exports = function (grunt) {
                 'spec/javascripts/support/json2.js',
                 'boilerplate/libs/amdjs/underscore-1.4.3.js',
                 'boilerplate/libs/amdjs/backbone-0.9.10.js',
-                'spec/javascripts/support/marionette.core-1.0.0-rc3.js',
+                'spec/javascripts/support/marionette.core-1.0.0-rc4.js',
                 'spec/javascripts/support/brix.support.js',
                 'src/brix.helpers.js',
                 'src/brix.place.js',

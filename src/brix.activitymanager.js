@@ -66,7 +66,6 @@ Brix.ActivityManager = Brix.Module.extend(
          * @constructs
          */
         constructor: function ActivityManager(activityMapper) {
-            Marionette.addEventBinder(this);
             if (Underscore.isFunction(activityMapper)) {
                 this.mapper = activityMapper;
             }
