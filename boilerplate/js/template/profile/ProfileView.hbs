@@ -18,7 +18,7 @@
     </li>
     <li>Then placeController is started</li>
     <li>Because of {{githubUrl "places/mapping.js" "mapping.js"}} placeController creates instance
-        of {{githubUrl "places/MyProfilePlace.js" "MyProfilePlace.js"}} and fires place change event.<br/>
+        of {{githubUrl "places/ProfilePlace.js" "ProfilePlace.js"}} and fires place change event.<br/>
         Now both modules receive this event and do futher logic<br/>
         <b>NavigationModule:</b><br/>
         <ol>
@@ -37,7 +37,7 @@
             <li>Main module is CompositeManager and just delegates region controlling to some particular module
                 depending of current place
             </li>
-            <li>Because current place is MyProfilePlace it creates instance
+            <li>Because current place is ProfilePlace it creates instance
                 of {{githubUrl "module/profile/ProfileModule.js" "ProfileModule.js"}} and starts it
             </li>
             <li>ProfileModule starts {{githubUrl "module/profile/activity/ProfileActivity.js" "ProfileActivity.js"}}
